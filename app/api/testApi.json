@@ -1,0 +1,9 @@
+{
+  "state": "1",
+  "msg": "Ok",
+  "data": {
+    "title": "It works!",
+    "description": "And this data is from the API",
+    "cta": "Excelent!"
+  }
+}

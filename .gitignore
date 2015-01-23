@@ -1,0 +1,8 @@
+# Excluded files for git
+
+.tmp
+.sass-cache
+dist
+wireframes
+node_modules
+bower_components
