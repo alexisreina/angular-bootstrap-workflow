@@ -39,9 +39,12 @@ module.exports = function (grunt) {
     // Inject Bower packages into your source code with Grunt.
     wiredep: {
       dev: {
-        src: 'app/index.html',
+        src: [
+          'app/index.html',
+          'app/css/styles.scss'
+        ],
         options: {
-          exclude: ['/jquery/', 'bower_components/bootstrap/dist/js/bootstrap.js']
+          exclude: ['/jquery/', 'bower_components/bootstrap-sass/assets/javascripts/bootstrap.js']
         }
       }
     },

@@ -4,12 +4,12 @@
 
 An automated Frontend workflow for creating responsive web apps with AngularJS and Twitter Bootstrap.
 
-Versión: 0.1.0
+Versión: 0.1.1
 
 ### Dependencies
 
 - [AngularJS v1.2.28](http://angularjs.org/)
-- [Bootstrap v3.3.1](http://getbootstrap.com/)
+- [Bootstrap v3.3.3](http://getbootstrap.com/)
 - [AngularUI Bootstrap](http://angular-ui.github.io/bootstrap/)
 
 

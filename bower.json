@@ -6,8 +6,8 @@
   ],
   "private": true,
   "dependencies": {
-    "bootstrap": "~3.3.1",
     "angular-bootstrap": "~0.12.0",
-    "angular": "~1.2.8"
+    "angular": "~1.2.8",
+    "bootstrap-sass": "~3.3.3"
   }
 }
