@@ -44,7 +44,11 @@ module.exports = function (grunt) {
           'app/css/styles.scss'
         ],
         options: {
-          exclude: ['/jquery/', 'bower_components/bootstrap-sass/assets/javascripts/bootstrap.js']
+          exclude: [
+            '/jquery/',
+            'bower_components/bootstrap-sass/assets/javascripts/bootstrap.js',
+            'bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss'
+          ]
         }
       }
     },
@@ -56,7 +60,7 @@ module.exports = function (grunt) {
           style: 'expanded'
         },
         files: {
-          '.tmp/css/styles.css': 'app/css/*.scss',
+          '.tmp/css/styles.css': 'app/css/styles.scss',
         }
       }
     },
