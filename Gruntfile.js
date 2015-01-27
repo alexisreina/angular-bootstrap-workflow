@@ -183,7 +183,7 @@ module.exports = function (grunt) {
       }
     },
 
-    // TODO: rev files
+    // Asset revisioning by using file content hashing.
     filerev: {
       options: {
         algorithm: 'md5',
@@ -200,9 +200,10 @@ module.exports = function (grunt) {
       }
     },
 
+    // Replace references to grunt-filerev files.
     filerev_replace: {
       options: {
-        assets_root: 'dist/{img/,js/,css/}'
+        assets_root: 'dist/{img/,js/,css/,fonts/}'
       },
       css: {
         src: 'dist/css/*.css'
@@ -240,8 +241,25 @@ module.exports = function (grunt) {
           dest: 'dist/img'               // Destination path prefix
         }]
       }
-    }
+    },
 
+    htmlmin: {
+      dist: {
+        options: {
+          removeComments: true,
+          collapseWhitespace: true,
+          minifyJS: true,
+          minifyCSS: true,
+          ignoreCustomComents: [] // Array of regex'es that allow to ignore certain comments, when matched
+        },
+        files: [{
+          expand: true,
+          cwd: 'dist/',
+          src: '**/*.html',
+          dest: 'dist/'
+        }]
+      }
+    }
 
     // Test related tasks.
 
@@ -275,6 +293,7 @@ module.exports = function (grunt) {
     'processhtml:dist',
     'filerev',
     'filerev_replace',
+    'htmlmin:dist',
     'browserSync:dist'
   ]);
 
