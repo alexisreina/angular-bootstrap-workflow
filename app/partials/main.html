@@ -13,7 +13,17 @@
   </div>
 
 
-  <div class="grunt"></div>
+  <div class="container">
+    <div ng-repeat="image in main.images" class="col-xs-6 col-md-3 col-lg-4">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h2  class="panel-title">{{ image.name }}</h2>
+        </div>
+        <div class="panel-footer">
+          <img ng-src="{{ image.src }}" class="img-responsive">
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
-<img srcset="img/grunt.png 2x, img/grunt.png 1x">

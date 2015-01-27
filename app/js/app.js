@@ -33,6 +33,20 @@
       main.description = result.data.description;
       main.cta = result.data.cta;
     });
+    main.images = [{
+      name: 'Grunt',
+      src: 'img/grunt.svg'
+
+    }, {
+      name: 'Bower',
+      src: 'img/bower.png'
+    }, {
+      name: 'Bootstrap',
+      src: 'img/bootstrap.png'
+    }, {
+      name: 'AngularJS',
+      src: 'img/angularjs.png'
+    }];
 
   }]);
 

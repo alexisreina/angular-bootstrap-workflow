@@ -2,7 +2,7 @@
 
 ### Description
 
-An automated Frontend workflow for creating responsive web apps with AngularJS and Twitter Bootstrap.
+An automated Frontend workflow for creating responsive web apps with AngularJS and Twitter Bootstrap. Heavily inspired by Yeoman Generators but more opinionated.
 
 Versión: 0.1.1
 
@@ -30,10 +30,9 @@ Chech the Gruntfile.js for documentation.
 
 ### Whish List:
 
-- Html minification would be nice
 - Add Testing framework for automated tests
 - Automatic file concatenation 
-- Write the documentation
+- Write a proper documentation
 
 ### License
 

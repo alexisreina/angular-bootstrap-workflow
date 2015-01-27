@@ -127,16 +127,16 @@ module.exports = function (grunt) {
 
     // Build production related tasks:
     // TODO: Automatize this
-    // Concatenate files. 'Update Manually.'
+    // Concatenate files. IMPORTANT -> Update Files Manually.
     concat: {
       dist: {
         files: {
-          '.tmp/concat/styles.css' : [
+          '.tmp/concat/css/styles.css' : [
             'bower_components/bootstrap/dist/css/bootstrap.css',
             '.tmp/css/styles.css'
           ],
 
-          '.tmp/concat/scripts.js' : [
+          '.tmp/concat/js/scripts.js' : [
             'bower_components/angular/angular.js',
             'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
             'app/js/app.js'
@@ -151,12 +151,12 @@ module.exports = function (grunt) {
         banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' +
                 '<%= grunt.template.today("yyyy-mm-dd, h:MM:ss TT") %> */\n',
         compress: {
-          drop_console: true // <- remove console.log()
+          drop_console: true //∫ <- remove console.log()
         }
       },
       dist: {
         files: {
-          'dist/js/scripts.js': '.tmp/concat/scripts.js'
+          'dist/js/scripts.js': '.tmp/concat/js/scripts.js'
         }
       }
     },
@@ -169,16 +169,7 @@ module.exports = function (grunt) {
                   '<%= grunt.template.today("yyyy-mm-dd, h:MM:ss TT") %> */\n',
         },
         files: {
-          'dist/css/styles.css': '.tmp/concat/styles.css'
-        }
-      }
-    },
-
-    // Process html files at build time to modify them depending on the release environment.
-    processhtml: {
-      dist: {
-        files: {
-          'dist/index.html': 'dist/index.html'
+          'dist/css/styles.css': '.tmp/concat/css/styles.css'
         }
       }
     },
@@ -189,33 +180,34 @@ module.exports = function (grunt) {
         algorithm: 'md5',
         length: 8
       },
-      images: {
-        src: 'dist/img/{,/*}*.{jpg,jpeg,gif,png,webp,svg}'
-      },
-      css: {
-        src: 'dist/css/*.css'
-      },
-      js: {
-        src: 'dist/js/*.js'
+      assets: {
+        files: [{
+          src: [
+            'dist/img/{,/*}*.{jpg,jpeg,gif,png,webp,svg}',
+            'dist/css/*.css',
+            'dist/js/*.js',
+            //'dist/fonts/{}*.{eot,ttf,svg,woff,woff2}'
+          ]
+        }],
       }
     },
 
-    // Replace references to grunt-filerev files.
-    filerev_replace: {
+    // Replaces references to non-optimized scripts
+    // or stylesheets into a set of HTML files (or any templates/views)
+    // No funciona con srcset!, hay que crear patterns a mano.
+    // Tampoco lo he probado con las tipos en el css! <- TODO
+    usemin: {
+      html: 'dist/{,*/}*.html',
+      css: 'dist/css/{,*/}*.css',
+      js: 'dist/js/*.js',
       options: {
-        assets_root: 'dist/{img/,js/,css/,fonts/}'
-      },
-      css: {
-        src: 'dist/css/*.css'
-      },
-      js: {
-        src: 'dist/js/*.js'
-      },
-      html: {
-        options: {
-          views_root: 'dist'
-        },
-        src: 'dist/{,/*}*.html'
+        assetsDirs: ['dist', 'dist/img'],
+        patterns: {
+          // FIXME While usemin won't have full support for revved files we have to put all references manually here
+          js: [
+              [/(img\/.*?\.(?:gif|jpeg|jpg|png|webp|svg))/gm, 'Update the JS to reference our revved images']
+          ]
+        }
       }
     },
 
@@ -231,7 +223,7 @@ module.exports = function (grunt) {
       }
     },
 
-    // Optimize svg
+    // Minify SVG.
     svgmin: {
       dist: {
         files: [{
@@ -243,6 +235,7 @@ module.exports = function (grunt) {
       }
     },
 
+    // Minify HTML.
     htmlmin: {
       dist: {
         options: {
@@ -290,9 +283,8 @@ module.exports = function (grunt) {
     'concat:dist',
     'uglify:dist',
     'csso:dist',
-    'processhtml:dist',
     'filerev',
-    'filerev_replace',
+    'usemin',
     'htmlmin:dist',
     'browserSync:dist'
   ]);
