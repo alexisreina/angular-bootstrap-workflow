@@ -1,6 +1,6 @@
 {
   "name": "angular-bootstrap-workflow",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "An automated fron-end worflow for creating responsive webapps with AngularJS and Twitter Bootstrap",
   "main": "Gruntfile.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/alexisreina/angular-bootstrap-workflow.git"
   },
   "keywords": [
     "AngularJS",

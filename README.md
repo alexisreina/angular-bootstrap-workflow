@@ -4,7 +4,7 @@
 
 An automated Frontend workflow for creating responsive web apps with AngularJS and Twitter Bootstrap. Heavily inspired by Yeoman Generators but more opinionated.
 
-Versión: 0.1.1
+Versión: 0.1.2
 
 ### Dependencies
 
