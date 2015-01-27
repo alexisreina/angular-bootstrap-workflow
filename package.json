@@ -1,6 +1,6 @@
 {
   "name": "angular-bootstrap-workflow",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "An automated fron-end worflow for creating responsive webapps with AngularJS and Twitter Bootstrap",
   "main": "Gruntfile.js",
   "scripts": {
