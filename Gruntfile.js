@@ -184,6 +184,39 @@ module.exports = function (grunt) {
     },
 
     // TODO: rev files
+    filerev: {
+      options: {
+        algorithm: 'md5',
+        length: 8
+      },
+      images: {
+        src: 'dist/img/{,/*}*.{jpg,jpeg,gif,png,webp,svg}'
+      },
+      css: {
+        src: 'dist/css/*.css'
+      },
+      js: {
+        src: 'dist/js/*.js'
+      }
+    },
+
+    filerev_replace: {
+      options: {
+        assets_root: 'dist/{img/,js/,css/}'
+      },
+      css: {
+        src: 'dist/css/*.css'
+      },
+      js: {
+        src: 'dist/js/*.js'
+      },
+      html: {
+        options: {
+          views_root: 'dist'
+        },
+        src: 'dist/{,/*}*.html'
+      }
+    },
 
     // Minify images
     imagemin: {
@@ -240,6 +273,8 @@ module.exports = function (grunt) {
     'uglify:dist',
     'csso:dist',
     'processhtml:dist',
+    'filerev',
+    'filerev_replace',
     'browserSync:dist'
   ]);
 
