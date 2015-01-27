@@ -111,7 +111,8 @@ module.exports = function (grunt) {
             baseDir: 'app',
             routes: {
               '/bower_components': 'bower_components',
-              '/css': '.tmp/css'
+              '/.tmp/css': '.tmp/css',
+              '/.tmp/img': 'app/img'
             }
           }
         }
@@ -126,48 +127,41 @@ module.exports = function (grunt) {
     },
 
     // Build production related tasks:
-    // TODO: Automatize this
-    // Concatenate files. IMPORTANT -> Update Files Manually.
-    concat: {
-      dist: {
-        files: {
-          '.tmp/concat/css/styles.css' : [
-            'bower_components/bootstrap/dist/css/bootstrap.css',
-            '.tmp/css/styles.css'
-          ],
-
-          '.tmp/concat/js/scripts.js' : [
-            'bower_components/angular/angular.js',
-            'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
-            'app/js/app.js'
-          ]
-        }
-      }
-    },
+    // Concatenate files.
+    // This is automatic now.
+    // concat: {
+    //  dist: {
+    //    files: {
+    //      '.tmp/concat/css/styles.css' : [
+    //        'bower_components/bootstrap/dist/css/bootstrap.css',
+    //        '.tmp/css/styles.css'
+    //      ],
+    //
+    //      '.tmp/concat/js/scripts.js' : [
+    //        'bower_components/angular/angular.js',
+    //        'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
+    //        'app/js/app.js'
+    //      ]
+    //    }
+    //  }
+    // },
 
     // Minify files with UglifyJS.
+    // This is automatic now. Just add drop_console option
+    // to delete console logs.
     uglify: {
       options: {
-        // banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' +
-        //         '<%= grunt.template.today("yyyy-mm-dd, h:MM:ss TT") %> */\n',
         compress: {
-          drop_console: true //∫ <- remove console.log()
-        }
-      },
-      dist: {
-        files: {
-          'dist/js/scripts.js': '.tmp/concat/js/scripts.js'
+          drop_console: true // <- remove console.log()
         }
       }
     },
 
-    // Compress CSS files.
+
+
+    // Compress pre-concatenated CSS files.
     csso: {
       dist: {
-        // options: {
-          // banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' +
-          //        '<%= grunt.template.today("yyyy-mm-dd, h:MM:ss TT") %> */\n',
-        // },
         files: {
           'dist/css/styles.css': '.tmp/concat/css/styles.css'
         }
@@ -189,6 +183,16 @@ module.exports = function (grunt) {
             //'dist/fonts/{}*.{eot,ttf,svg,woff,woff2}'
           ]
         }],
+      }
+    },
+
+
+    // Prepares the configuration to transform specific blocks
+    useminPrepare: {
+      html: 'app/index.html',
+      src: '.tmp/css/*.css',
+      options: {
+        dest: 'dist'
       }
     },
 
@@ -275,13 +279,14 @@ module.exports = function (grunt) {
   grunt.registerTask('build', [
     'clean:dist',
     'wiredep:dev',
+    'sass:dist',
+    'autoprefixer:dist',
+    'useminPrepare',
     'copy:dist',
     'imagemin:dist',
     'svgmin:dist',
-    'sass:dist',
-    'autoprefixer:dist',
-    'concat:dist',
-    'uglify:dist',
+    'concat:generated',
+    'uglify:generated',
     'csso:dist',
     'filerev',
     'usemin',
