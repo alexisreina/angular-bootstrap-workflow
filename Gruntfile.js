@@ -148,8 +148,8 @@ module.exports = function (grunt) {
     // Minify files with UglifyJS.
     uglify: {
       options: {
-        banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' +
-                '<%= grunt.template.today("yyyy-mm-dd, h:MM:ss TT") %> */\n',
+        // banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' +
+        //         '<%= grunt.template.today("yyyy-mm-dd, h:MM:ss TT") %> */\n',
         compress: {
           drop_console: true //∫ <- remove console.log()
         }
@@ -164,10 +164,10 @@ module.exports = function (grunt) {
     // Compress CSS files.
     csso: {
       dist: {
-        options: {
-          banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' +
-                  '<%= grunt.template.today("yyyy-mm-dd, h:MM:ss TT") %> */\n',
-        },
+        // options: {
+          // banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' +
+          //        '<%= grunt.template.today("yyyy-mm-dd, h:MM:ss TT") %> */\n',
+        // },
         files: {
           'dist/css/styles.css': '.tmp/concat/css/styles.css'
         }
