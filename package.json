@@ -32,7 +32,6 @@
     "grunt-contrib-watch": "^0.6.1",
     "grunt-csso": "^0.7.0",
     "grunt-filerev": "^2.1.2",
-    "grunt-rev": "^0.1.0",
     "grunt-svgmin": "^2.0.0",
     "grunt-usemin": "^3.0.0",
     "grunt-wiredep": "^2.0.0",

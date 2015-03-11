@@ -2,8 +2,6 @@
   "state": "1",
   "msg": "Ok",
   "data": {
-    "title": "It f*** works!",
-    "description": "And this data is from the API. This is it, delete all and start fresh.",
-    "cta": "Excelent!"
+
   }
 }

@@ -29,7 +29,12 @@ module.exports = function (grunt) {
             dot: true,
             cwd: 'app',
             dest: 'dist',
-            src: [ '*.{ico,png,txt,xml}', 'img/{,*/}*.webp', '{,*/}*.html', 'fonts/{,*/}*.*', 'api/{,*/}*.json' ]
+            src: [
+              '*.{ico,png,txt,xml,htaccess}',
+              'img/{,*/}*.webp',
+              '{,*/}*.html', 'fonts/{,*/}*.*',
+              'api/{,*/}*.*'
+            ]
           }
         ]
       }
@@ -112,7 +117,8 @@ module.exports = function (grunt) {
             routes: {
               '/bower_components': 'bower_components',
               '/.tmp/css': '.tmp/css',
-              '/.tmp/img': 'app/img'
+              '/.tmp/img': 'app/img',
+              '/.tmp/fonts': 'app/fonts'
             }
           }
         }
@@ -177,7 +183,7 @@ module.exports = function (grunt) {
       assets: {
         files: [{
           src: [
-            'dist/img/{,/*}*.{jpg,jpeg,gif,png,webp,svg}',
+            //'dist/img/{,/*}*.{jpg,jpeg,gif,png,webp,svg}',
             'dist/css/*.css',
             'dist/js/*.js',
             //'dist/fonts/{}*.{eot,ttf,svg,woff,woff2}'
@@ -265,7 +271,7 @@ module.exports = function (grunt) {
 
 
   // Development task(s).
-  grunt.registerTask('dev', [
+  grunt.registerTask('serve', [
     'clean:dist',
     'wiredep:dev',
     'sass:dist',
@@ -290,10 +296,9 @@ module.exports = function (grunt) {
     'csso:dist',
     'filerev',
     'usemin',
-    'htmlmin:dist',
-    'browserSync:dist'
+    'htmlmin:dist'
   ]);
 
   // Default task.
-  grunt.registerTask('default', ['dev']);
+  grunt.registerTask('default', ['build']);
 };
